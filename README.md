@@ -1,7 +1,5 @@
 # AWS Copilot GitHub Actions
 
-Status: In Progress
-
 In this blog, I’m going to walk through how to set up AWS Copilot in GitHub actions. 
 
 ## AWS Copilot
