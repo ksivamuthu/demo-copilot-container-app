@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Configure AWS credentials from Test account
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::495775103319:role/DemoCopilotGitHubRole-Role-11F4CDTIBMR7O
@@ -24,3 +24,9 @@ jobs:
           command: install
       - run: |
           copilot --version
+      - uses: ksivamuthu/aws-copilot-github-action@v0.0.1
+        with:
+          command: deploy
+          app: demo
+          env: prod
+          force: false
