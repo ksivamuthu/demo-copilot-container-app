@@ -1,0 +1,26 @@
+name: "build"
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - main
+      - "releases/*"
+# These permissions are needed to interact with GitHub's OIDC Token endpoint.
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::495775103319:role/DemoCopilotGitHubRole-Role-11F4CDTIBMR7O
+          aws-region: us-east-1
+      - uses: aws-copilot-github-action
+        with:
+          command: install
+      - run: |
+          copilot --version
