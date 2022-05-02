@@ -28,5 +28,5 @@ jobs:
         with:
           command: deploy
           app: demo
-          env: prod
+          env: test
           force: false
